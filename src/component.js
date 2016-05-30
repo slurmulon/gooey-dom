@@ -1,5 +1,4 @@
-// https://github.com/vuejs/vue/blob/dev/src/directive.js
-import * as gooey from 'gooey'
+import * as gooey from 'gooey-core'
 import {Viewable} from './viewable'
 
 export const kinds = ['elem', 'attr', 'comment']
