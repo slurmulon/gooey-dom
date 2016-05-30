@@ -1,2 +1,3 @@
 # gooey-dom
-DOM module for Gooey
+
+> :cactus: DOM and HTML module for Gooey
