@@ -1,22 +1,23 @@
 export class Viewable {
 
-  constructor({ model, data, context }) { // ViewModel, ViewContext
+  constructor({ model, data, context, node }) {
     this.model    = model || _ => _
     this.data     = data
     this.context  = context || this
+    this.node     = node
     this.bound    = false
     this.bindings = {}
   }
 
-  bind(data?) {
+  bind(data?) { // TODO
     this.bound = true
   }
 
-  unbind() {
-
+  unbind() { // TODO
+    this.bound = false
   }
 
-  compile() {
+  compile() { // TODO
 
   }
 

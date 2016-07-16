@@ -8,6 +8,7 @@ export class Component extends Viewable {
   constructor(
     name  : string,
     view  : Partial,
+    data  : Object,
     when  : Object,
     kind  : string   = 'elem',
     model : Function = _ => _,
@@ -15,16 +16,17 @@ export class Component extends Viewable {
     slots : Object   = {},
     url   : String
   ) {
-    super({ model }) // TODO - context
+    super({ model, data }) // TODO - context
 
-    this.name    = name  // TODO - prefix with `component:` or something
-    this.view    = view
-    this.kind    = kind
-    this.model   = model
-    this.when    = when  // collection of subscriptions that respond to particular events {pattern: on}
-    this.needs   = needs // list of services by name, OR allow for resolve block-like functionality (set up Service state before entering component)
-    this.slots   = slots // mapping of transclusion slot names to expected component
-    this.url     = url
+    this.name  = name  // TODO - prefix with `component:` or something
+    this.view  = view
+    this.data  = data
+    this.kind  = kind
+    this.model = model
+    this.when  = when  // collection of subscriptions that respond to particular events {pattern: on}
+    this.needs = needs // list of services by name, OR allow for resolve block-like functionality (set up Service state before entering component)
+    this.slots = slots // mapping of transclusion slot names to expected component
+    this.url   = url
 
     this._service   = gooey.service({ name, model }) // parent? children? should be infered at run-time based on view
     this._enabled   = true
@@ -52,7 +54,7 @@ export class Component extends Viewable {
   }
 
   // bind "when" subscriptions
-  // TODO - global listener for general changes..?
+  // TODO: global/root listener for general changes..?
   listen() {
     for (let condition in this.when) {
       const action = this.when[condition]

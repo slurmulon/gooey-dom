@@ -1,3 +1,4 @@
+// TODO: deprecate, might be best to conflate into Viewable
 export class DomElement extends Viewable {
 
   // constructor({id, clazz, name, attrs}) {
@@ -74,7 +75,7 @@ export class DomElement extends Viewable {
   }
 
   appendTo(elem: DomElement) {
-    
+ 
   }
 
   toString() {
