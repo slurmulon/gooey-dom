@@ -2,14 +2,19 @@ import request from 'request'
 
 export class Partial {
 
-  constructor({ url, html }) {
-    this.url  = url
-    this.html = html
+  constructor({ url, html, slots }) {
+    this.url   = url
+    this.html  = html
+    this.slots = slots
   }
 
   compile() {
     const contents = this.url ? got(this.url) : Promise(this.html)
     // TODO: const transcluded 
+  }
+
+  transclude() {
+
   }
 
   bind(data?) {

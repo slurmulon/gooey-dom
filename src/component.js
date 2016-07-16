@@ -14,7 +14,6 @@ export class Component extends Viewable {
     needs : Object   = [],
     slots : Object   = {},
     url   : String
-    // TODO - transclude: boolean
   ) {
     super({ model }) // TODO - context
 
@@ -24,6 +23,7 @@ export class Component extends Viewable {
     this.model   = model
     this.when    = when  // collection of subscriptions that respond to particular events {pattern: on}
     this.needs   = needs // list of services by name, OR allow for resolve block-like functionality (set up Service state before entering component)
+    this.slots   = slots // mapping of transclusion slot names to expected component
     this.url     = url
 
     this._service   = gooey.service({ name, model }) // parent? children? should be infered at run-time based on view
@@ -49,11 +49,6 @@ export class Component extends Viewable {
     }
 
     return resolved
-  }
-
-  // apply model against current scope data
-  refresh() {
-    return this.model(this.data)
   }
 
   // bind "when" subscriptions
@@ -83,21 +78,11 @@ export class Component extends Viewable {
     this.resolve(true)
     this.listen()
     this.refresh()
-    this.onBind()
   }
 
   unbind() {
     // 1. unsubscribe component and sub-components
     // 2. refresh
-    // 3. onUnbind()
-  }
-
-  onBind() {
-    // publish
-  }
-
-  onUnbind() {
-    // publish
   }
 
 }
