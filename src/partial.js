@@ -1,14 +1,15 @@
-
+import request from 'request'
 
 export class Partial {
 
-  constructor({url, html}) {
-    this.url   = url
-    this.html  = html
+  constructor({ url, html }) {
+    this.url  = url
+    this.html = html
   }
 
   compile() {
-
+    const contents = this.url ? got(this.url) : Promise(this.html)
+    // TODO: const transcluded 
   }
 
   bind(data?) {
@@ -27,7 +28,7 @@ export class Partial {
       if (this.html) {
         resolve(this.html)
       } else {
-        request.get(ops, (error, response, body) => {
+        request.get(url, (error, response, body) => {
           if (!error && response.statusCode === 200) {
             reject(error)
           } else {

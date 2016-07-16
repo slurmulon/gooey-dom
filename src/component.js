@@ -1,5 +1,5 @@
 import * as gooey from 'gooey-core'
-import {Viewable} from './viewable'
+import { Viewable } from './viewable'
 
 export const kinds = ['elem', 'attr', 'comment']
 
@@ -12,10 +12,11 @@ export class Component extends Viewable {
     kind  : string   = 'elem',
     model : Function = _ => _,
     needs : Object   = [],
+    slots : Object   = {},
     url   : String
     // TODO - transclude: boolean
   ) {
-    super({model}) // TODO - context
+    super({ model }) // TODO - context
 
     this.name    = name  // TODO - prefix with `component:` or something
     this.view    = view
@@ -25,7 +26,7 @@ export class Component extends Viewable {
     this.needs   = needs // list of services by name, OR allow for resolve block-like functionality (set up Service state before entering component)
     this.url     = url
 
-    this._service   = gooey.service({name, model}) // parent? children? should be infered at run-time based on view
+    this._service   = gooey.service({ name, model }) // parent? children? should be infered at run-time based on view
     this._enabled   = true
     this._bound     = false
     this._listening = false
@@ -69,12 +70,13 @@ export class Component extends Viewable {
 
   compile() {
     // X - 1. prepare data (dynamically inject "needs" if necessary?)
-    // 2. load partial (either literal HTML or from URL)
-    // 3. "compile" root DOM Element of template, triggering a cascade of nested compilations
+    // X - 2. load partial (either literal HTML or from URL)
+    // 3. "compile" root DOM Element of template into Components, triggering a cascade of nested compilations
     // 4. parse and "compile" components of sub-DOM elements
     // 4. perform transclusion if necessary (low priority)
     // 5. call "_bind"
     this.view.load()
+    this.resolve(true)
   }
 
   bind() {

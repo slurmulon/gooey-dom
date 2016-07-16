@@ -15,7 +15,7 @@ export class DomElement extends Viewable {
 
   }
 
-  get elem() {
+  get node() {
 
   }
 
@@ -46,7 +46,11 @@ export class DomElement extends Viewable {
   }
 
   find(query) {
+    if (query && query.constructor === String) {
+      return document.querySelector(query)
+    }
 
+    return query
   }
 
   enable() {
@@ -55,6 +59,14 @@ export class DomElement extends Viewable {
 
   disable() {
     this._enabled = false
+  }
+
+  insert() {
+
+  }
+
+  remove() {
+
   }
 
   prependTo(elem: DomElement) {

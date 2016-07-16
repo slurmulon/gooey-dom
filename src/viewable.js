@@ -1,6 +1,6 @@
 export class Viewable {
 
-  constructor({model, data, context}) { // ViewModel, ViewContext
+  constructor({ model, data, context }) { // ViewModel, ViewContext
     this.model    = model
     this.data     = data
     this.context  = context || this
@@ -9,7 +9,7 @@ export class Viewable {
   }
 
   bind(data?) {
-
+    this.bound = true
   }
 
   unbind() {
@@ -20,16 +20,9 @@ export class Viewable {
 
   }
 
-  onCompile(action: Function) {
-    
-  }
-
-  onBind(action: Function) {
-    
-  }
-
-  onUnbind(action: Function) {
-    
+  mount() {
+    this.compile()
+    this.bind()
   }
 
 }
