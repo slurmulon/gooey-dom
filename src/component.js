@@ -39,9 +39,10 @@ export class Component extends Viewable {
   }
 
   // acquire "needs" Service dependencies and optionally bind them to the data scope
+  // TODO: subscribe component as a child to each "needs" service
   resolve(bind: boolean = false) {
-    const needs = gooey.util.values(this.needs)
-    const pool  = gooey.services()
+    const needs    = gooey.util.values(this.needs)
+    const pool     = gooey.services()
     const resolved = {}
 
     needs.forEach(req => resolved[req] = pool[req])

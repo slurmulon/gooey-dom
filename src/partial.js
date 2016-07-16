@@ -1,16 +1,18 @@
+import Viewable from './viewable'
 import request from 'request'
 
-export class Partial {
+export class Partial extends Viewable {
 
-  constructor({ url, html, slots }) {
+  constructor({ url, contents, data, slots }) {
+    super({ data, contents })
+
     this.url   = url
-    this.html  = html
     this.slots = slots
   }
 
   compile() {
     const contents = this.url ? got(this.url) : Promise(this.html)
-    // TODO: const transcluded 
+    // TODO: const transcluded
   }
 
   transclude() {
