@@ -1,15 +1,17 @@
 export class Viewable {
 
-  constructor({ model, data, node, contents }) {
+  constructor({ model, data, nodes, contents }) {
     this.model    = model || _ => _
-    this.data     = data
-    this.node     = node
+    this.data     = data  || { }
+    this.nodes    = nodes || [ ]
     this.contents = contents
     this.bound    = false
-    this.bindings = {}
+    this.bindings = { }
   }
 
-  bind() { // TODO
+  bind() {
+    // TODO: subscribe to parent Viewable if it exists
+    // TODO: recursively call `bind` on child Viewables
     this.bound = true
   }
 
@@ -20,6 +22,9 @@ export class Viewable {
   compile() { // TODO
     // iterate through nodes (elements and attribute) and
     // make them instances of Viewable
+    for (let node of nodes) {
+      
+    }
   }
 
   // mounts compiled and bound viewable element to document

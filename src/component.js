@@ -16,9 +16,9 @@ export class Component extends Viewable {
     slots : Object   = {},
     url   : String
   ) {
-    super({ model, data }) // TODO - context
+    super({ model, data })
 
-    this.name  = name  // TODO - prefix with `component:` or something
+    this.name  = name
     this.view  = view
     this.data  = data
     this.kind  = kind
